@@ -1,0 +1,13 @@
+
+.idea/
+
+source/lodepng/
+source/parson/
+source/cNBT/
+source/cglm/
+build/
+saves/
+assets/*.shader
+*.dol
+*.elf
+
