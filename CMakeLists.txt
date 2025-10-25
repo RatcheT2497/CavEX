@@ -121,12 +121,16 @@ add_executable(cavex
 				source/graphics/render_model.c
 				source/graphics/texture_atlas.c
 
-				source/platform/displaylist.c
-				source/platform/gfx.c
 				source/platform/input.c
-				source/platform/thread.c
-				source/platform/time.c
+				source/platform/pc/native_input.c
+
 				source/platform/texture.c
+				source/platform/pc/native_texture.c
+
+				source/platform/pc/native_displaylist.c
+				source/platform/pc/native_gfx.c
+				source/platform/pc/native_time.c
+				source/platform/pc/native_thread.c
 
 				source/chunk_mesher.c
 				source/chunk.c
@@ -142,7 +146,7 @@ add_executable(cavex
 				source/lodepng/lodepng.c
 
 				source/parson/parson.c
-			)
+)
 
 target_compile_definitions(cavex PRIVATE PLATFORM_PC CGLM_ALL_UNALIGNED)
 

@@ -29,7 +29,7 @@
 #endif
 
 #ifdef PLATFORM_PC
-#include <GL/glew.h>
+#include <GL/gl.h>
 #endif
 
 enum tex_format {

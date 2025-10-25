@@ -17,6 +17,7 @@
 	along with CavEX.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <assert.h>
 #include <GL/glew.h>
 #include <string.h>
 

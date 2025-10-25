@@ -19,8 +19,12 @@
 
 #include <assert.h>
 #include <gccore.h>
+#include <limits.h>
 #include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
+
+#include "../texture.h"
 
 #define rgba16(r, g, b, a)                                                     \
 	(((int)(a) << 12) | ((int)(r) << 8) | ((int)(g) << 4) | (int)(b))

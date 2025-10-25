@@ -17,11 +17,8 @@
 	along with CavEX.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "time.h"
-
-#ifdef PLATFORM_PC
-
 #include <time.h>
+#include "../time.h"
 
 void time_reset() { }
 
@@ -46,31 +43,3 @@ float time_diff_s(ptime_t f, ptime_t s) {
 	return (float)(s.tv_sec - f.tv_sec)
 		+ (float)(s.tv_nsec - f.tv_nsec) / 1000000000.0F;
 }
-
-#endif
-
-#ifdef PLATFORM_WII
-
-#include <ogc/lwp_watchdog.h>
-
-void time_reset() {
-	settime(0);
-}
-
-ptime_t time_get() {
-	return gettime();
-}
-
-ptime_t time_add_ms(ptime_t t, unsigned int ms) {
-	return t + TB_TIMER_CLOCK * ms;
-}
-
-int32_t time_diff_ms(ptime_t f, ptime_t s) {
-	return (s - f) / TB_TIMER_CLOCK;
-}
-
-float time_diff_s(ptime_t f, ptime_t s) {
-	return (float)(s - f) / (float)(1000UL * TB_TIMER_CLOCK);
-}
-
-#endif

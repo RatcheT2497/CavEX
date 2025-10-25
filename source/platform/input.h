@@ -63,4 +63,10 @@ bool input_joystick(float dt, float* x, float* y);
 void input_pointer_enable(bool enable);
 bool input_pointer(float* x, float* y, float* angle);
 
+bool input_native_key_symbol(int key, int* symbol, int* symbol_help,
+							 enum input_category* category, int* priority);
+void input_native_key_status(int key, bool* pressed, bool* released,
+							 bool* held);
+void input_native_joystick(float dt, float* dx, float* dy);
+
 #endif

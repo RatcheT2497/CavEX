@@ -171,11 +171,3 @@ void tex_gfx_load_file(struct tex_gfx* tex, const char* filename,
 
 	tex_gfx_load(tex, img, width, height, type, linear);
 }
-
-#ifdef PLATFORM_WII
-#include "wii/texture.c"
-#endif
-
-#ifdef PLATFORM_PC
-#include "pc/texture.c"
-#endif

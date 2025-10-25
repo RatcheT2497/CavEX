@@ -17,10 +17,25 @@
 	along with CavEX.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef PLATFORM_WII
-#include "wii/gfx.c"
-#endif
+#include <ogc/lwp_watchdog.h>
+#include "../time.h"
 
-#ifdef PLATFORM_PC
-#include "pc/gfx.c"
-#endif
+void time_reset() {
+	settime(0);
+}
+
+ptime_t time_get() {
+	return gettime();
+}
+
+ptime_t time_add_ms(ptime_t t, unsigned int ms) {
+	return t + TB_TIMER_CLOCK * ms;
+}
+
+int32_t time_diff_ms(ptime_t f, ptime_t s) {
+	return (s - f) / TB_TIMER_CLOCK;
+}
+
+float time_diff_s(ptime_t f, ptime_t s) {
+	return (float)(s - f) / (float)(1000UL * TB_TIMER_CLOCK);
+}

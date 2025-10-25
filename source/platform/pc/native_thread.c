@@ -18,10 +18,7 @@
 */
 
 #include <assert.h>
-
-#include "thread.h"
-
-#ifdef PLATFORM_PC
+#include "../thread.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -107,44 +104,3 @@ bool tchannel_send(struct thread_channel* c, void* msg, bool block) {
 	pthread_mutex_unlock(&c->lock);
 	return true;
 }
-
-#endif
-
-#ifdef PLATFORM_WII
-
-void thread_create(struct thread* t, void* (*entry)(void* arg), void* arg,
-				   uint8_t priority) {
-	assert(t && entry);
-	LWP_CreateThread(&t->native, entry, arg, NULL, 0, priority);
-}
-
-void thread_join(struct thread* t) {
-	assert(t);
-
-	void* unused;
-	LWP_JoinThread(t->native, &unused);
-}
-
-void thread_msleep(size_t ms) {
-	usleep(ms * 1000);
-}
-
-void tchannel_init(struct thread_channel* c, size_t count) {
-	assert(c && count > 0);
-	MQ_Init(&c->native, count);
-}
-
-void tchannel_close(struct thread_channel* c) {
-	assert(c);
-	MQ_Close(c->native);
-}
-
-bool tchannel_receive(struct thread_channel* c, void** msg, bool block) {
-	return MQ_Receive(c->native, msg, block ? MQ_MSG_BLOCK : MQ_MSG_NOBLOCK);
-}
-
-bool tchannel_send(struct thread_channel* c, void* msg, bool block) {
-	return MQ_Send(c->native, msg, block ? MQ_MSG_BLOCK : MQ_MSG_NOBLOCK);
-}
-
-#endif
